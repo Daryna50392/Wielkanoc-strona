@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Wesołych Świąt!</title>
+    <style>
+        body {
+            background-color: #fff8dc; /* delikatny kremowy */
+            font-family: Comic Sans MS, cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .left {
+            width: 50%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .right {
+            width: 50%;
+            position: relative;
+            height: 100%;
+        }
+        h1 {
+            color: #d2691e;
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        #time {
+            font-weight: bold;
+        }
+        .bunny {
+            width: 150px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .falling-bunny {
+            width: 60px;
+            position: absolute;
+            top: -80px;
+            animation: fall 6s linear infinite;
+        }
+        @keyframes fall {
+            0% { top: -80px; }
+            100% { top: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="left">
+        <h1>🐣 Wesołych Świąt Wielkanocnych! 🐣</h1>
+        <p>Niech te święta przyniosą Ci:</p>
+        <p>🏐 nową piłkę do siatkówki</p>
+        <p>📱 nowy telefon</p>
+        <p>🍫 zapas czekoladowych Milków!</p>
+        <p>Aktualny czas: <span id="time"></span></p>
+    </div><div class="right">
+    <img class="bunny" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Easter_Bunny.svg/512px-Easter_Bunny.svg.png" alt="Królik Wielkanocny">
+</div>
+
+<script>
+    function updateTime() {
+        const now = new Date();
+        document.getElementById('time').innerText = now.toLocaleTimeString('pl-PL');
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    for (let i = 0; i < 10; i++) {
+        let fallingBunny = document.createElement('img');
+        fallingBunny.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Easter_Bunny.svg/512px-Easter_Bunny.svg.png';
+        fallingBunny.classList.add('falling-bunny');
+        fallingBunny.style.left = Math.random() * window.innerWidth + 'px';
+        fallingBunny.style.animationDuration = (4 + Math.random() * 3) + 's';
+        document.body.appendChild(fallingBunny);
+    }
+</script>
+
+</body>
+</html>
